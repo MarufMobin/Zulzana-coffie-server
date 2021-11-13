@@ -36,10 +36,29 @@ async function run() {
         const result =   await testimonials.find({}).toArray()
         res.json(result)
     });
+
     // All Products Fetch
     app.get('/products', async( req, res) =>{
         const result =   await products.find({}).toArray()
         res.json(result)
+    });
+
+    app.get('/allorders', async( req, res) =>{
+        const result =   await orders.find({}).toArray()
+        res.json(result)
+    });
+
+    // Save product in database 
+    app.post('/allproducts', async( req, res) =>{
+      // const id = req.params.id
+      const data = req.body
+    const placeItem = await orders.insertOne(data);
+    res.json(placeItem)
+
+    // acknowledged: true
+    // insertedId: "618fc4b98a69e7657816841c"
+
+
     });
 
     } finally {
